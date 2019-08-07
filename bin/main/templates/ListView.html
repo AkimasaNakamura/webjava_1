@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>商品情報</h1>
+
+<form action="#" th:action="@{/}" th:object="${listform}" method="post">
+ <dl>
+  <th:block th:each="item:${itemlist}">
+  <span class="item" th:text="${item.name}"></span>
+  <span class="item" th:text="${item. price}"></span>
+  <input type="hidden" th:value="${item.itemId}" >
+  <input type="text" th:field="*{num}" />
+  <p><input type="submit" value="追加" /></p>
+ </dl>
+</form>
+
+<a>================================================</a>
+
+<h1>カート情報</h1>
+ <span class="message" th:text="${message}"></span>
+
+<dl>
+ <th:block th:each="cart:${cartlist}">
+  <!-- TODO:一旦itemIDを表示 -->
+  <span class="cart" th:text="${cart.itemId}"></span>
+  <span class="cart" th:text="${cart.num}"></span>
+ </th:block>
+</dl>
+
+</body>
+</html>
