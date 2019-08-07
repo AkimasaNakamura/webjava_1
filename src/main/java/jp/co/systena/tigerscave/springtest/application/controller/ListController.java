@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import jp.co.systena.tigerscave.springtest.application.model.Cart;
 import jp.co.systena.tigerscave.springtest.application.model.ListForm;
+import jp.co.systena.tigerscave.springtest.application.model.ListService;
 import jp.co.systena.tigerscave.springtest.application.model.Order;
 
 @Controller
@@ -17,17 +18,17 @@ public class ListController {
   @Autowired
   HttpSession session;
 
+  ListService listService = new ListService();
+
   @RequestMapping(value="/" , method = RequestMethod.GET)
   public ModelAndView show(ModelAndView mav) {
 
-    // 商品フォーム
-    ListForm listForm = (ListForm)session.getAttribute("form");
+    ListForm listForm = (ListForm) session.getAttribute("form");
     session.removeAttribute("form");
-
-    if(listForm != null) {
-      mav.addObject("massage" ,"商品をカートに追加しました。");
+    if (listForm != null) {
+      mav.addObject("message", "商品をカートに追加しました。");
     }
-    mav.addObject("listForm", new ListForm());
+    mav.addObject("listform", new ListForm());
 
     // 商品カート
     Cart cart = (Cart)session.getAttribute("cart");
@@ -37,7 +38,7 @@ public class ListController {
     }
     mav.addObject("cartlist", cart.getOrdarList());
 
-    // サンプル:bindingResultで入力値の検証を行っている。
+    mav.addObject("itemlist", listService.getItemList());
 
     mav.setViewName("ListView");
     return mav;
@@ -54,14 +55,12 @@ public class ListController {
     }
 
     Order order = new Order();
-    order.setItemId(listForm.getItem().getItemId());
-    order.setNum(listForm.getSum());
+    order.setItemId(listForm.getItemId());
+    order.setNum(listForm.getNum());
     cart.getOrdarList().add(order);
 
     session.setAttribute("form", listForm);
+    session.setAttribute("cart", cart);
     return new ModelAndView("redirect:/");
   }
-
-
-
 }

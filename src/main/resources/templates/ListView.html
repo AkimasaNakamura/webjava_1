@@ -6,12 +6,17 @@
 </head>
 <body>
 <h1>商品情報</h1>
-<form action="#" th:action="@{/}" th:object="${listForm}" method="post">
-  <p>商品名： <input type="text" th:field="*{item.itemId}" /></p>
-  <p>個数： <input type="text" th:field="*{sum}" /></p>
-  <p><input type="submit" value="Submit" /></p>
-</form>
 
+<form action="#" th:action="@{/}" th:object="${listform}" method="post">
+ <dl>
+  <th:block th:each="item:${itemlist}">
+  <span class="item" th:text="${item.name}"></span>
+  <span class="item" th:text="${item. price}"></span>
+  <input type="hidden" th:value="${item.itemId}" >
+  <input type="text" th:field="*{num}" />
+  <p><input type="submit" value="追加" /></p>
+ </dl>
+</form>
 
 <a>================================================</a>
 
@@ -21,7 +26,8 @@
 <dl>
  <th:block th:each="cart:${cartlist}">
   <!-- TODO:一旦itemIDを表示 -->
-  <span class="cart" th:text="${oder.itemId}"></span>
+  <span class="cart" th:text="${cart.itemId}"></span>
+  <span class="cart" th:text="${cart.num}"></span>
  </th:block>
 </dl>
 

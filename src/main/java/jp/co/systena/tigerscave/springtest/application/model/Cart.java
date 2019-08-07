@@ -1,5 +1,6 @@
 package jp.co.systena.tigerscave.springtest.application.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
 public class Cart {
 
   // 商品リスト
-  private List<Order> ordarList;
+  private List<Order> ordarList = new ArrayList<Order>();
 
   public List<Order> getOrdarList() {
     return ordarList;

@@ -1,7 +1,5 @@
 package jp.co.systena.tigerscave.springtest.application.model;
 
-import java.util.ArrayList;
-
 /**
  *商品リストフォーム
  * @author systena
@@ -9,13 +7,14 @@ import java.util.ArrayList;
  */
 public class ListForm {
 
-  private ArrayList<Item> items;
+  private int itemId;
   private int num;
-  public ArrayList<Item> getItems() {
-    return items;
+
+  public int getItemId() {
+    return itemId;
   }
-  public void setItems(ArrayList<Item> items) {
-    this.items = items;
+  public void setItemId(int itemId) {
+    this.itemId = itemId;
   }
   public int getNum() {
     return num;

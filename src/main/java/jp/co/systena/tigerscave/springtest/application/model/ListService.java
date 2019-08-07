@@ -14,6 +14,7 @@ public class ListService {
   private ArrayList<Item> itemList;
 
   public ArrayList<Item> getItemList() {
+    itemList = new ArrayList<Item>();
 
     itemList.add(new Item(000, "apple", 100));
     itemList.add(new Item(001, "orange", 110));
